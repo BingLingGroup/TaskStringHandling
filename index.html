@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Loop Tasks</title>
+    <link rel="stylesheet"
+        href="styles.css">
+</head>
+
+<body>
+    <h2>Task 1</h2>
+    <div class="input-box">
+        <span id="input-task-1-span">Input: </span>
+        <input type="text"
+            id="input-task-1"
+            class="input-box-text"
+            value="Hello World!" />
+    </div>
+    <div class="input-box">
+        <span id="task-1-result">Output: </span>
+    </div>
+    <div class="input-box">
+        <button id="task-1-button"
+            class="button-box">Handle</button>
+    </div>
+    <br>
+    <br>
+    <h2>Task 2</h2>
+    <div class="input-box">
+        <span id="input-task-2-span">Input: </span>
+        <input type="text"
+            id="input-task-2"
+            class="input-box-text"
+            value="Hello World!" />
+        <span id="input-task-2-description"></span>
+    </div>
+    <div class="input-box">
+        <span id="task-2-result">Output: </span>
+    </div>
+    <div class="input-box">
+        <button id="task-2-button"
+            class="button-box">Handle</button>
+    </div>
+    <br>
+    <br>
+    <h2>Task 3</h2>
+    <div class="input-box">
+        <span id="input-task-3-span">Input: </span>
+        <input type="text"
+            id="input-task-3"
+            class="input-box-text"
+            value="Madam" />
+    </div>
+    <div class="input-box">
+        <span id="task-3-result">Output: </span>
+    </div>
+    <div class="input-box">
+        <span id="task-3-result-2"></span>
+    </div>
+    <div class="input-box">
+        <button id="task-3-button"
+            class="button-box">Handle</button>
+    </div>
+    <script>
+        function countL(
+            event,
+            inputID,
+            resultID
+        ) {
+            if (event.key === "Enter" || event.type === "click") {
+                // Prevent the default behavior (like submitting a form prematurely)
+                event.preventDefault();
+                let word = document.getElementById(inputID).value;
+                let count = 0;
+                for (const char of word) {
+                    if ((char === "L") || (char === "l"))
+                        count = count + 1;
+                }
+                document.getElementById(resultID).textContent = `Output: ${word} contains ${count}xL characters.`;
+            }
+        }
+
+        function countVowels(
+            event,
+            inputID,
+            resultID
+        ) {
+            if (event.key === "Enter" || event.type === "click") {
+                // Prevent the default behavior (like submitting a form prematurely)
+                event.preventDefault();
+                let word = document.getElementById(inputID).value;
+                let result = word.match(/[aeiouyåäö]/gi)
+                let count = 0;
+                if (result !== null) {
+                    count = result.length;
+                }
+                document.getElementById(resultID).textContent = `Output: ${word} contains ${count} vowels.`;
+            }
+        }
+
+        function checkPalindrome(
+            event,
+            inputID,
+            resultID
+        ) {
+            if (event.key === "Enter" || event.type === "click") {
+                // Prevent the default behavior (like submitting a form prematurely)
+                event.preventDefault();
+                let word = document.getElementById(inputID).value;
+                lowercaseWord = word.toLowerCase();
+                let reversedWord = lowercaseWord.split("").reverse().join("");
+                if (reversedWord === lowercaseWord) {
+                    document.getElementById(resultID).textContent = `Output: ${word} is palindrome.`;
+                }
+                else {
+                    document.getElementById(resultID).textContent = `Output: ${word} is NOT palindrome.`;
+                }
+            }
+        }
+
+        document.getElementById("input-task-1").addEventListener("keydown", (event) => {
+            countL(
+                event = event,
+                inputID = "input-task-1",
+                resultID = "task-1-result"
+            )
+        });
+        document.getElementById("task-1-button").addEventListener("click", (event) => {
+            countL(
+                event = event,
+                inputID = "input-task-1",
+                resultID = "task-1-result"
+            )
+        });
+
+        document.getElementById("input-task-2").addEventListener("keydown", (event) => {
+            countVowels(
+                event = event,
+                inputID = "input-task-2",
+                resultID = "task-2-result"
+            )
+        });
+        document.getElementById("task-2-button").addEventListener("click", (event) => {
+            countVowels(
+                event = event,
+                inputID = "input-task-2",
+                resultID = "task-2-result"
+            )
+        });
+
+        document.getElementById("input-task-3").addEventListener("keydown", (event) => {
+            checkPalindrome(
+                event = event,
+                inputID = "input-task-3",
+                resultID = "task-3-result"
+            )
+        });
+        document.getElementById("task-3-button").addEventListener("click", (event) => {
+            checkPalindrome(
+                event = event,
+                inputID = "input-task-3",
+                resultID = "task-3-result"
+            )
+        });
+
+    </script>
+</body>
+
+</html>
